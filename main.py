@@ -4,7 +4,13 @@ from selenium.common.exceptions import NoSuchElementException, WebDriverExceptio
 import requests
 import time
 import pyautogui
+from dotenv import load_dotenv
+import os
 
+
+load_dotenv()
+mail_id = os.getenv("email")
+Password = os.getenv("pass")
 
 driver = webdriver.Chrome()
 try:
@@ -34,10 +40,10 @@ try:
             driver.implicitly_wait(2)
             email = driver.find_element(By.XPATH, '//*[@id="email_landing"]')
             time.sleep(1)
-            email.send_keys("wiz_saurabh@rediffmail.com")
+            email.send_keys(mail_id)
             password = driver.find_element(
                 By.XPATH, '//*[@id="password_landing"]')
-            password.send_keys("Pass@123")
+            password.send_keys(Password)
             sign_in = driver.find_element(
                 By.XPATH, '//*[@id="frm_landing_page_user_login"]/div[3]/button')
             sign_in.click()
